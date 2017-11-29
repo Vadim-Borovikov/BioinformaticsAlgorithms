@@ -1,15 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BioinformaticsAlgorithms
 {
-    class Program
+    public static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            string text = "GCGCG";
+            const string Pattern = "GCG";
+            int patternCount = PatternCount(text, Pattern);
+            Console.WriteLine($"PatternCount: {patternCount}");
+
+            text = "CAAGGCAGACAAGGCAGAGTGGCAACGCAAGGCAGACAAGGCAGAGGGGGTAACTACTCCGACCATTTTTGTGGCAACGGGGGGTAACGGGGGTAACTACTCCGATACTCCGATACTCCGACCATTTTTGGGGGTAACCCATTTTTGTGGCAACGCCATTTTTTACTCCGAGTGGCAACGCAAGGCAGACAAGGCAGATACTCCGACCATTTTTGTGGCAACGCCATTTTTCAAGGCAGAGGGGGTAACCCATTTTTTACTCCGAGTGGCAACGGGGGGTAACCCATTTTTCAAGGCAGAGTGGCAACGGGGGGTAACGGGGGTAACCAAGGCAGAGGGGGTAACGGGGGTAACCAAGGCAGACCATTTTTGTGGCAACGTACTCCGACAAGGCAGAGTGGCAACGCCATTTTTCAAGGCAGAGTGGCAACGGTGGCAACGCAAGGCAGACAAGGCAGACCATTTTTGGGGGTAACCCATTTTTCCATTTTTCAAGGCAGAGGGGGTAACGGGGGTAACCAAGGCAGAGGGGGTAACGTGGCAACGCAAGGCAGACAAGGCAGATACTCCGAGTGGCAACGTACTCCGATACTCCGATACTCCGATACTCCGACCATTTTTCAAGGCAGATACTCCGACAAGGCAGAGTGGCAACGGTGGCAACGGGGGGTAACGGGGGTAACCAAGGCAGATACTCCGACCATTTTTGTGGCAACGGTGGCAACGGTGGCAACGTACTCCGAGGGGGTAACTACTCCGACCATTTTTGGGGGTAACCAAGGCAGATACTCCGAGTGGCAACGCAAGGCAGACCATTTTTGGGGGTAACCAAGGCAGAGTGGCAACGTACTCCGAGGGGGTAACGGGGGTAACCAAGGCAGA";
+            const int K = 13;
+            IEnumerable<string> words = FrequentWords(text, K);
+            Console.Write("FrequentWords: ");
+            foreach (string word in words)
+            {
+                Console.Write($"{word}, ");
+            }
+            Console.WriteLine();
+        }
+
+        public static int PatternCount(string text, string pattern)
+        {
+            var dnaText = new DnaString(text);
+            var dnaPattern = new DnaString(pattern);
+            return dnaText.PatternCount(dnaPattern);
+        }
+
+        public static IEnumerable<string> FrequentWords(string text, int k)
+        {
+            var dnaText = new DnaString(text);
+            IEnumerable<DnaString> words = dnaText.FrequentWords(k);
+            return words.Select(w => w.ToString());
         }
     }
 }
