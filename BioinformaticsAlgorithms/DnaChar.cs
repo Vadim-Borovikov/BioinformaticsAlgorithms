@@ -15,11 +15,10 @@
             return new[]
             {
                 (c == 'G') || (c == 'C'),
-                (c == 'T') || (c == 'C'),
+                (c == 'T') || (c == 'C')
             };
         }
 
-        internal static char BitsToChar(bool[] bits) => BitsToChar(bits[0], bits[1]);
         internal static char BitsToChar(bool a, bool b)
         {
             if (a)

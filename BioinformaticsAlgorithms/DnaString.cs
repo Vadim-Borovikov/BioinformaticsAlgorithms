@@ -102,7 +102,7 @@ namespace BioinformaticsAlgorithms
         #endregion // Equality
 
         #region PatternCount
-        public int PatternCount(DnaString pattern)
+        internal int PatternCount(DnaString pattern)
         {
             int result = 0;
             for (int i = 0; i <= (Length - pattern.Length); ++i)
