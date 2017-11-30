@@ -56,8 +56,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="StringTaskSolverTests.cs" />
+    <Compile Include="DnaStringTaskSolverTests.cs" />
     <Compile Include="DnaStringTests.cs" />
-    <Compile Include="ProgramTests.cs" />
+    <Compile Include="SolversTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -44,8 +44,11 @@
   <ItemGroup>
     <Compile Include="DnaChar.cs" />
     <Compile Include="DnaString.cs" />
+    <Compile Include="ITasksSolver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DnaStringTaskSolver.cs" />
+    <Compile Include="StringTaskSolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
