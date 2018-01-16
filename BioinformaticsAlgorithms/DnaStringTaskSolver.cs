@@ -18,5 +18,12 @@ namespace BioinformaticsAlgorithms
             IEnumerable<DnaString> words = dnaText.FrequentWords(k);
             return words.Select(w => w.ToString());
         }
+
+        public string ReverseComplement(string pattern)
+        {
+            var dnaPattern = new DnaString(pattern);
+            DnaString dnaReverseComplement = dnaPattern.GetReverseComplement();
+            return dnaReverseComplement.ToString();
+        }
     }
 }

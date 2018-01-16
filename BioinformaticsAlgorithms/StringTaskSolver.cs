@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace BioinformaticsAlgorithms
 {
@@ -37,6 +39,18 @@ namespace BioinformaticsAlgorithms
                 }
             }
             return frequentWords;
+        }
+
+        public string ReverseComplement(string pattern)
+        {
+            var sb = new StringBuilder(pattern);
+            for (int i = 0; i < sb.Length; i++)
+            {
+                sb[i] = DnaChar.Flip(sb[i]);
+            }
+            char[] arr = sb.ToString().ToArray();
+            Array.Reverse(arr);
+            return new string(arr);
         }
     }
 }

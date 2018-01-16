@@ -12,7 +12,7 @@ namespace BioinformaticsAlgorithms
 
         private DnaString(int length)
         {
-            Content = new BitArray(length);
+            Content = new BitArray(length * 2);
         }
 
         public DnaString(string s)
@@ -168,7 +168,7 @@ namespace BioinformaticsAlgorithms
             {
                 if (amounts[i] == maxAmount)
                 {
-                    frequentWords.Add(Substring(i * 2, k * 2));
+                    frequentWords.Add(Substring(i, k));
                 }
             }
             return frequentWords;
@@ -178,11 +178,26 @@ namespace BioinformaticsAlgorithms
         private DnaString Substring(int startIndex, int length)
         {
             var result = new DnaString(length);
-            for (int i = 0; i < length; ++i)
+            for (int i = 0; i < (length * 2); ++i)
             {
-                result.Content[i] = Content[i + startIndex];
+                result.Content[i] = Content[i + startIndex * 2];
             }
             return result;
         }
+
+        #region ReverseComplement
+        internal DnaString GetReverseComplement()
+        {
+            var result = new DnaString(Length);
+            for (int i = 0; i < (Content.Length - 1); i += 2)
+            {
+                bool[] b = DnaChar.Flip(Content[result.Content.Length - i - 2],
+                                        Content[result.Content.Length - i - 1]);
+                result.Content[i] = b[0];
+                result.Content[i + 1] = b[1];
+            }
+            return result;
+        }
+        #endregion // ReverseComplement
     }
 }

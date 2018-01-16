@@ -1,4 +1,6 @@
-﻿namespace BioinformaticsAlgorithms
+﻿using System;
+
+namespace BioinformaticsAlgorithms
 {
     internal static class DnaChar
     {
@@ -26,6 +28,24 @@
                 return b ? 'C' : 'G';
             }
             return b ? 'T' : 'A';
+        }
+
+        internal static bool[] Flip(bool a, bool b) => new[] { a, !b };
+        internal static char Flip(char c)
+        {
+            switch (char.ToUpper(c))
+            {
+                case 'A':
+                    return 'T';
+                case 'T':
+                    return 'A';
+                case 'G':
+                    return 'C';
+                case 'C':
+                    return 'G';
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(c));
+            }
         }
     }
 }
