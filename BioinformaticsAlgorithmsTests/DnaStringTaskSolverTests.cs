@@ -29,5 +29,13 @@ namespace BioinformaticsAlgorithmsTests
             var tests = new SolversTests(solver);
             tests.ReverseComplementTest();
         }
+
+        [TestMethod]
+        public void PatternMatchingTestDna()
+        {
+            var solver = new DnaStringTaskSolver();
+            var tests = new SolversTests(solver);
+            tests.PatternMatchingTest();
+        }
     }
 }

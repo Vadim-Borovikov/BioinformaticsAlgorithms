@@ -104,15 +104,7 @@ namespace BioinformaticsAlgorithms
         #region PatternCount
         internal int PatternCount(DnaString pattern)
         {
-            int result = 0;
-            for (int i = 0; i <= (Length - pattern.Length); ++i)
-            {
-                if (IsSubstring(i * 2, pattern))
-                {
-                    ++result;
-                }
-            }
-            return result;
+            return PatternMatching(pattern).Count();
         }
 
         private int PatternCount(int patternStartIndex, int patternLength)
@@ -199,5 +191,18 @@ namespace BioinformaticsAlgorithms
             return result;
         }
         #endregion // ReverseComplement
+
+        #region PatternMatching
+        internal IEnumerable<int> PatternMatching(DnaString pattern)
+        {
+            for (int i = 0; i <= (Length - pattern.Length); ++i)
+            {
+                if (IsSubstring(i * 2, pattern))
+                {
+                    yield return i;
+                }
+            }
+        }
+        #endregion // PatternMatching
     }
 }

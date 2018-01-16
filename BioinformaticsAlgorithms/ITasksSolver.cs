@@ -7,5 +7,6 @@ namespace BioinformaticsAlgorithms
         int PatternCount(string text, string pattern);
         IEnumerable<string> FrequentWords(string text, int k);
         string ReverseComplement(string pattern);
+        IEnumerable<int> PatternMatching(string pattern, string genome);
     }
 }

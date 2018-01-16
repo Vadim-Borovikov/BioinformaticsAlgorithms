@@ -25,5 +25,12 @@ namespace BioinformaticsAlgorithms
             DnaString dnaReverseComplement = dnaPattern.GetReverseComplement();
             return dnaReverseComplement.ToString();
         }
+
+        public IEnumerable<int> PatternMatching(string pattern, string genome)
+        {
+            var dnaPattern = new DnaString(pattern);
+            var dnagGenome = new DnaString(genome);
+            return dnagGenome.PatternMatching(dnaPattern);
+        }
     }
 }

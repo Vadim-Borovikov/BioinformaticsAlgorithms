@@ -9,15 +9,7 @@ namespace BioinformaticsAlgorithms
     {
         public int PatternCount(string text, string pattern)
         {
-            int result = 0;
-            for (int i = 0; i <= (text.Length - pattern.Length); ++i)
-            {
-                if (text.Substring(i, pattern.Length) == pattern)
-                {
-                    ++result;
-                }
-            }
-            return result;
+            return PatternMatching(pattern, text).Count();
         }
 
         public IEnumerable<string> FrequentWords(string text, int k)
@@ -51,6 +43,17 @@ namespace BioinformaticsAlgorithms
             char[] arr = sb.ToString().ToArray();
             Array.Reverse(arr);
             return new string(arr);
+        }
+
+        public IEnumerable<int> PatternMatching(string pattern, string genome)
+        {
+            for (int i = 0; i <= (genome.Length - pattern.Length); ++i)
+            {
+                if (genome.Substring(i, pattern.Length) == pattern)
+                {
+                    yield return i;
+                }
+            }
         }
     }
 }
