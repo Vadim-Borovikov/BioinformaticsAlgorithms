@@ -204,5 +204,36 @@ namespace BioinformaticsAlgorithms
             }
         }
         #endregion // PatternMatching
+
+        #region ClumpFinding
+        internal IEnumerable<DnaString> ClumpFinding(int k, int windowLength, int minAmount)
+        {
+            var clumps = new HashSet<DnaString>();
+            for (int i = 0; i <= (Length - windowLength); ++i)
+            {
+                DnaString window = Substring(i, windowLength);
+                IEnumerable<DnaString> currentClumps = window.FrequentWords(k, minAmount);
+                foreach (DnaString clump in currentClumps)
+                {
+                    clumps.Add(clump);
+                }
+            }
+            return clumps;
+        }
+
+        private IEnumerable<DnaString> FrequentWords(int k, int minAmount)
+        {
+            var frequentWords = new HashSet<DnaString>();
+            for (int i = 0; i <= (Length - k); ++i)
+            {
+                int amount = PatternCount(i * 2, k * 2);
+                if (amount >= minAmount)
+                {
+                    frequentWords.Add(Substring(i, k));
+                }
+            }
+            return frequentWords;
+        }
+        #endregion // ClumpFinding
     }
 }

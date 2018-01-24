@@ -14,20 +14,35 @@ namespace BioinformaticsAlgorithms
 
         public IEnumerable<string> FrequentWords(string text, int k)
         {
-            var amounts = new int[text.Length - k + 1];
-            for (int i = 0; i <= (text.Length - k); ++i)
-            {
-                string pattern = text.Substring(i, k);
-                amounts[i] = PatternCount(text, pattern);
-            }
-            int maxAmount = amounts.Max();
-
+            int maxAmount = 0;
             var frequentWords = new HashSet<string>();
             for (int i = 0; i <= (text.Length - k); ++i)
             {
-                if (amounts[i] == maxAmount)
+                string pattern = text.Substring(i, k);
+                int amount = PatternCount(text, pattern);
+                if (amount > maxAmount)
                 {
-                    frequentWords.Add(text.Substring(i, k));
+                    maxAmount = amount;
+                    frequentWords.Clear();
+                }
+                if (amount == maxAmount)
+                {
+                    frequentWords.Add(pattern);
+                }
+            }
+            return frequentWords;
+        }
+
+        private IEnumerable<string> FrequentWords(string text, int k, int minAmount)
+        {
+            var frequentWords = new HashSet<string>();
+            for (int i = 0; i <= (text.Length - k); ++i)
+            {
+                string pattern = text.Substring(i, k);
+                int amount = PatternCount(text, pattern);
+                if (amount >= minAmount)
+                {
+                    frequentWords.Add(pattern);
                 }
             }
             return frequentWords;
@@ -54,6 +69,21 @@ namespace BioinformaticsAlgorithms
                     yield return i;
                 }
             }
+        }
+
+        public IEnumerable<string> ClumpFinding(string genome, int k, int windowLength, int minAmount)
+        {
+            var clumps = new HashSet<string>();
+            for (int i = 0; i <= (genome.Length - windowLength); ++i)
+            {
+                string window = genome.Substring(i, windowLength);
+                IEnumerable<string> currentClumps = FrequentWords(window, k, minAmount);
+                foreach (string clump in currentClumps)
+                {
+                    clumps.Add(clump);
+                }
+            }
+            return clumps;
         }
     }
 }

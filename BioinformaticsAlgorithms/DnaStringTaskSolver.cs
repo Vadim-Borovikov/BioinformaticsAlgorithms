@@ -29,8 +29,15 @@ namespace BioinformaticsAlgorithms
         public IEnumerable<int> PatternMatching(string pattern, string genome)
         {
             var dnaPattern = new DnaString(pattern);
-            var dnagGenome = new DnaString(genome);
-            return dnagGenome.PatternMatching(dnaPattern);
+            var dnaGenome = new DnaString(genome);
+            return dnaGenome.PatternMatching(dnaPattern);
+        }
+
+        public IEnumerable<string> ClumpFinding(string genome, int k, int windowLength, int times)
+        {
+            var dnaGenome = new DnaString(genome);
+            IEnumerable<DnaString> slumps = dnaGenome.ClumpFinding(k, windowLength, times);
+            return slumps.Select(w => w.ToString());
         }
     }
 }

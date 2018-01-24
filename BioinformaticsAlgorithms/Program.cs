@@ -33,6 +33,10 @@ namespace BioinformaticsAlgorithms
             pattern = "CTTGATCAT";
             matches = solver.PatternMatching(pattern, text);
             File.WriteAllText("VibrioCholerae.result.txt", string.Join(" ", matches));
+
+            text = File.ReadAllText("ClumpFinding.txt");
+            IEnumerable<string> clumps = solver.ClumpFinding(text, 9, 541, 18);
+            File.WriteAllText("ClumpFinding.result.txt", string.Join(" ", clumps));
         }
     }
 }

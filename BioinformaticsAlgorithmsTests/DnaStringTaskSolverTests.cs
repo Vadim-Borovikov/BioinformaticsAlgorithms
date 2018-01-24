@@ -37,5 +37,13 @@ namespace BioinformaticsAlgorithmsTests
             var tests = new SolversTests(solver);
             tests.PatternMatchingTest();
         }
+
+        [TestMethod]
+        public void ClumpFindingTestDna()
+        {
+            var solver = new DnaStringTaskSolver();
+            var tests = new SolversTests(solver);
+            tests.ClumpFindingTest();
+        }
     }
 }
